@@ -6,44 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sealNotepad</title>
     <script type="module" src="/src/main.ts" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
   </head>
 
     <div class="titlebar">
-      <div class="title">sealNotepad</div>
+      <button id="home"> <div> <img src="/src/assets/seal.png" /> <div class="outfit-300"> sealNotepad</div> </div> </button>
 
       
       <div class="window-controls">
         <button id="minimize">
-          <!-- material-symbols-light:minimize-rounded -->
+          <!-- lsicon:shell-window-minimize-outline -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
-            viewBox="0 0 24 24"
+            viewBox="0 0 16 16"
           >
-          <path fill="currentColor" d="M7 20q-.213 0-.356-.144t-.144-.357t.144-.356T7 19h10q.213 0 .356.144t.144.357t-.144.356T17 20z"/>
+          <path fill="none" stroke="currentColor" d="M3 8h10" stroke-width="1"/>
           </svg>
         </button>
         <button id="maximize">
-          <!-- material-symbols-light:square-outline-rounded -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-          >
-          <path fill="currentColor" d="M4 20V4h16v16zm1-1h14V5H5zm0 0V5z"/>
-          </svg>
-        </button>
-        <button id="close">
-          <!-- material-symbols-light:close-rounded -->
+          <!-- lsicon:shell-window-maximize-outline -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
-            viewBox="0 0 24 24"
+            viewBox="0 0 16 16"
           >
-          <path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/>
+          <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M3.5 4.5h9v7h-9z" stroke-width="1"/>
+          </svg>
+        </button>
+        <button id="close">
+          <!-- lsicon:close-small-outline -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 16 16"
+          >
+          <path fill="none" stroke="currentColor" d="m4.5 4.5l7 7m0-7l-7 7" stroke-width="1"/></svg>
           </svg>
         </button>
       </div>

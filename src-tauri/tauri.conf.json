@@ -16,8 +16,10 @@
         "title": "sealNotepad",
         "width": 800,
         "height": 600,
+        "minWidth": 800,
+        "minHeight": 600,
         "decorations": false,
-        "backgroundColor": "#0B0D0D"
+        "backgroundColor": "#0d100f"
       }
     ],
     "security": {
