@@ -10,7 +10,7 @@ function Home() {
         <>
         <div>
             <div className="home-page">
-                <img src="/src/assets/placeholder.png"/>
+                <img src="/src/assets/home-seal.png"/>
                 <h1 className="google-sans-600">No seally notes around!</h1>
                 <a className="google-sans-g100" onClick={() => navigate("/edit")}>Let's create a new one!</a>
             </div>

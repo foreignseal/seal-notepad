@@ -247,11 +247,20 @@
 .sidebar .elements {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* spacing between First and Second */
+  gap: 0; /* spacing between First and Second */
 }
 .sidebar button {
+  color: white;
   width: 100%;
   padding: 10px 0;
+  border: none;
+  background: transparent;
+  -webkit-transition: background-color ease-in-out 400ms;
+}
+.sidebar button:hover {
+  background-color: #efe9f4;
+  color: #090B0B;
+  -webkit-transition: background-color ease-in-out 400ms;
 }
 .settings-layout .sidebar {
   width: 25%;
