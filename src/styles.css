@@ -1,0 +1,71 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #EFE9F4;
+  background-color: #171D1C;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Title Bar */
+.titlebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 32px;
+  background-color: #0B0D0D;
+  color: #EFE9F4;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  padding-left: 10px;
+
+  -webkit-app-region: drag;
+  z-index: 1000;
+}
+
+
+/* Title Bar -- CONTROLS */
+.window-controls {
+  display: flex;
+  gap: 5px;
+}
+.window-controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+
+  -webkit-app-region: no-drag;
+}
+
+/* Title Bar -- Icons/Hovers */
+#minimize:hover {
+  background: #c0dfa188;
+}
+#maximize:hover {
+  background: #EFD56B88;
+}
+#close:hover {
+  background: #E44C4C88;
+}
+
+.window-controls path {
+  fill: #efe9f452;
+}
+.window-controls button:hover path {
+  fill: #efe9f4;
+}
