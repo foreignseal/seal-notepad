@@ -1,19 +1,16 @@
-import { useState } from "react";
-import Modal from "../components/Modal";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 
-export default function ClosePopup() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function ClosePopup({ onClose }: { onClose: () => void }) {
 
   return (
-    <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-    >
-        <h2>Hello 👋</h2>
-        <p>This is a popup!</p>
-        <button onClick={() => setIsModalOpen(false)}>
-        Close
-        </button>
-    </Modal>
+    <div className="pop-up">
+      <div className="content">
+        <h2>Are you sure you want to close the app?</h2>
+        <div className="buttons">
+          <button onClick={() => getCurrentWindow().close()}>Yes</button>
+          <button onClick={onClose}>No</button>
+        </div>
+      </div>
+    </div>
   );
 }

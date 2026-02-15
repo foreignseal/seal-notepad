@@ -1,9 +1,8 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import ClosePopup from "./ClosePopup";
 
-function closeApp() {
-    getCurrentWindow().close();
-}
 function minimizeApp() {
     getCurrentWindow().minimize();
 }
@@ -12,6 +11,7 @@ function toggleMaximizeApp() {
 }
 
 function TitleBar() {
+    const [showComponent, setShowComponent] = useState(false);
 
     const navigate = useNavigate();
 
@@ -19,8 +19,13 @@ function TitleBar() {
         navigate("/");
     }
 
+    useEffect(() => {
+    console.log("showComponent:", showComponent);
+    }, [showComponent]);
+
 
     return (
+        <>
         <div className="titlebar">
             <button id="home" onClick={goHome}> <div> <img src="/src/assets/seal.png" /> <div className="outfit-300"> sealNotepad</div> </div> </button>
 
@@ -47,7 +52,7 @@ function TitleBar() {
                         <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M3.5 4.5h9v7h-9z" stroke-width="1"/>
                     </svg>
                 </button>
-                <button id="close" onClick={closeApp}>
+                <button id="close" onClick={() => setShowComponent(true)}>
                     {/* lsicon:close-small-outline */}
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +65,9 @@ function TitleBar() {
                 </button>
             </div>
         </div>
+        {showComponent && (<ClosePopup onClose={() => setShowComponent(false)} />
+      )}
+        </>
     );
 }
 

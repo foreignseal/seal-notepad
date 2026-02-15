@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import TitleBar from "./components/TitleBar";
 import Home from "./pages/Home";
 import Editor from "./pages/Editor";
-import ClosePopup from "./components/ClosePopup";
 
 export default function App() {
   return (
@@ -15,7 +14,6 @@ export default function App() {
           <Route path="/edit" element={<Editor />} />
         </Routes>
       </div>
-      <ClosePopup />
     </>
   );
 }
