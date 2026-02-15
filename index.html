@@ -2,58 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sealNotepad</title>
-    <script type="module" src="/src/main.ts" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    
   </head>
 
-    <div class="titlebar">
-      <button id="home"> <div> <img src="/src/assets/seal.png" /> <div class="outfit-300"> sealNotepad</div> </div> </button>
-
-      
-      <div class="window-controls">
-        <button id="minimize">
-          <!-- lsicon:shell-window-minimize-outline -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 16 16"
-          >
-          <path fill="none" stroke="currentColor" d="M3 8h10" stroke-width="1"/>
-          </svg>
-        </button>
-        <button id="maximize">
-          <!-- lsicon:shell-window-maximize-outline -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 16 16"
-          >
-          <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M3.5 4.5h9v7h-9z" stroke-width="1"/>
-          </svg>
-        </button>
-        <button id="close">
-          <!-- lsicon:close-small-outline -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 16 16"
-          >
-          <path fill="none" stroke="currentColor" d="m4.5 4.5l7 7m0-7l-7 7" stroke-width="1"/></svg>
-          </svg>
-        </button>
-      </div>
-    </div>
-
   <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
