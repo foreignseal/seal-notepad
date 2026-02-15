@@ -228,6 +228,42 @@
 }
 
 
+.mg75 {
+  width: 75vw;
+  height: 75vh;
+}
+.settings-layout {
+  width: 100%;
+  height: 100%;
+
+  display: flex;          /* horizontal split */
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar .elements {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* spacing between First and Second */
+}
+.sidebar button {
+  width: 100%;
+  padding: 10px 0;
+}
+.settings-layout .sidebar {
+  width: 25%;
+}
+.settings-layout .settings {
+  width: 75%;
+}
+.settings {
+  margin: 12px;
+}
+
+
 /* Fonts */
 .outfit-300 {
   font-family: "Outfit", sans-serif;

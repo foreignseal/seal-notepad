@@ -1,6 +1,6 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ClosePopup from "./ClosePopup";
 
 function minimizeApp() {
@@ -18,11 +18,6 @@ function TitleBar() {
     function goHome() {
         navigate("/");
     }
-
-    useEffect(() => {
-    console.log("showComponent:", showComponent);
-    }, [showComponent]);
-
 
     return (
         <>
