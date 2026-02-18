@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { readTextFile, writeTextFile } from "@tauri-apps/plugin-fs";
 import { useEffect, useState } from "react";
 
-import { useEditor, EditorContent, setContent } from "@tiptap/react";
+import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 
@@ -28,7 +28,7 @@ function Editor() {
     useEffect(() => {
         if (!path) return;
         async function loadFile() {
-            const file = await readTextFile(path);
+            const file = await readTextFile(path as string);
             const parsed = JSON.parse(file);
 
             setTitle(parsed.title);

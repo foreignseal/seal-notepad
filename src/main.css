@@ -55,6 +55,7 @@
 
   -webkit-app-region: no-drag;
   -webkit-transition: color ease-in-out 400ms;
+  transition: color ease-in-out 400ms;
 }
 #home div {
   gap: 4px;
@@ -62,14 +63,17 @@
 #home img {
   opacity: .8;
   -webkit-transition: opacity ease-in-out 400ms;
+  transition: opacity ease-in-out 400ms;
 }
 #home:hover {
   color: #efe9f4;
   -webkit-transition: color ease-in-out 400ms;
+  transition: color ease-in-out 400ms;
 }
 #home:hover img {
   opacity: 1;
   -webkit-transition: opacity ease-in-out 400ms;
+  transition: opacity ease-in-out 400ms;
 }
 
 
@@ -97,6 +101,7 @@
 #close:hover,
 #close { 
   -webkit-transition: background-color ease-in-out 400ms;
+  transition: background-color ease-in-out 400ms;
 }
 #minimize:hover {
   background: #c0dfa188;
@@ -111,6 +116,7 @@
 .window-controls path,
 .window-controls button:hover path {
   -webkit-transition: stroke ease-in-out 400ms;
+  transition: stroke ease-in-out 400ms;
 }
 .window-controls path {
   stroke: #efe9f452;
@@ -156,10 +162,12 @@
   text-underline-offset: 2px;
   cursor: pointer;
   -webkit-transition: color ease-in-out 400ms;
+  transition: color ease-in-out 400ms;
 }
 .home-page a:hover {
   color: #51c2be;
   -webkit-transition: color ease-in-out 400ms;
+  transition: color ease-in-out 400ms;
 }
 .bottom {
   display: flex;
@@ -256,11 +264,13 @@
   border: none;
   background: transparent;
   -webkit-transition: background-color ease-in-out 400ms;
+  transition: background-color ease-in-out 400ms;
 }
 .sidebar button:hover {
   background-color: #efe9f4;
   color: #090B0B;
   -webkit-transition: background-color ease-in-out 400ms;
+  transition: background-color ease-in-out 400ms;
 }
 .settings-layout .sidebar {
   width: 25%;
