@@ -273,6 +273,39 @@
 }
 
 
+/* Editor Page */
+.editor-page {
+  padding: 20px;
+}
+
+.title-input {
+  font-size: 24px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.toolbar button {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.ProseMirror {
+  min-height: 300px;
+  outline: none;
+  padding: 15px;
+  border-radius: 8px;
+  background: #1e1e1e; /* adjust for your theme */
+}
+
+
 /* Fonts */
 .outfit-300 {
   font-family: "Outfit", sans-serif;

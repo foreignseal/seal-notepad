@@ -33,7 +33,7 @@ function TitleBar() {
                     height="24"
                     viewBox="0 0 16 16"
                     >
-                        <path fill="none" stroke="currentColor" d="M3 8h10" stroke-width="1"/>
+                        <path fill="none" stroke="currentColor" d="M3 8h10" strokeWidth="1"/>
                     </svg>
                 </button>
                 <button id="maximize" onClick={toggleMaximizeApp}>
@@ -44,7 +44,7 @@ function TitleBar() {
                     height="24"
                     viewBox="0 0 16 16"
                     >
-                        <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M3.5 4.5h9v7h-9z" stroke-width="1"/>
+                        <path fill="none" stroke="currentColor" strokeLinejoin="round" d="M3.5 4.5h9v7h-9z" strokeWidth="1"/>
                     </svg>
                 </button>
                 <button id="close" onClick={() => setShowComponent(true)}>
@@ -55,7 +55,7 @@ function TitleBar() {
                     height="24"
                     viewBox="0 0 16 16"
                     >
-                        <path fill="none" stroke="currentColor" d="m4.5 4.5l7 7m0-7l-7 7" stroke-width="1"/>
+                        <path fill="none" stroke="currentColor" d="m4.5 4.5l7 7m0-7l-7 7" strokeWidth="1"/>
                     </svg>
                 </button>
             </div>
