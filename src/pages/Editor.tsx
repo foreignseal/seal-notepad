@@ -38,33 +38,7 @@ function Editor() {
         loadFile();
     }, [path, editor]);
 
-    /*
-    useEffect(() => {
-        if (editor && content) {
-            editor.commands.setContent(content);
-        }
-    }, [editor]);
-    */
-
-    /*
-    useEffect(() => {
-        if (!path) return;
-
-        const timeout = setTimeout(async () => {
-            await writeTextFile(
-                path,
-                JSON.stringify({
-                    title,
-                    content,
-                })
-            );
-        }, 800);
-
-        return () => clearTimeout(timeout);
-    }, [title, content]);
-    */
-
-    // 🔹 Ctrl+S manual save
+    // Ctrl+S
     useEffect(() => {
         const handleSave = async (e: KeyboardEvent) => {
             if ((e.ctrlKey || e.metaKey) && e.key === "s") {
@@ -96,7 +70,7 @@ function Editor() {
         className="title-input"
       />
 
-      {/* 🔥 Toolbar */}
+      {/* Toolbar */}
       <div className="toolbar">
         <button onClick={() => editor?.chain().focus().toggleBold().run()}>
           Bold
@@ -119,7 +93,7 @@ function Editor() {
         </button>
       </div>
 
-      {/* 🔥 Rich Text Editor */}
+      {/* Text Editor */}
       <EditorContent editor={editor} />
     </div>
   );

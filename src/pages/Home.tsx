@@ -22,7 +22,7 @@ async function createNewFile(navigate: any) {
 
   await writeTextFile(filePath, initialContent);
 
-  // 🔥 Add to recent files
+  // Recent Files
   const stored = JSON.parse(localStorage.getItem("recentFiles") || "[]");
 
   if (!stored.includes(filePath)) {
