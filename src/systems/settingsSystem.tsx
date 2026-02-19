@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { exists, readTextFile, writeTextFile, create } from "@tauri-apps/plugin-fs";
-import { appConfigDir } from "@tauri-apps/api/path";
+import { exists, readTextFile, writeTextFile, mkdir } from "@tauri-apps/plugin-fs";
+import { appConfigDir, BaseDirectory, join } from "@tauri-apps/api/path";
+import * as path from '@tauri-apps/api/path';
 
+const folderPath = await appConfigDir();
 const SETTINGS_FILE = "settings.json";
 
 export type Settings = {
@@ -31,10 +33,16 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
 
     useEffect(() => {
         async function init() {
-            const configDir = await appConfigDir();
-            const settingsPath = configDir + SETTINGS_FILE;
+            await mkdir('seal-notepad', { 
+                baseDir: BaseDirectory.AppLocalData,
+                recursive: true,
+             });
 
-            const fileExists = await exists(settingsPath);
+            const settingsPath = 'settings.json';
+
+            const fileExists = await exists(settingsPath, {
+                baseDir: await path(BaseDirectory.AppLocalData, 'seal-notepad'),
+            });
 
             if (!fileExists) {
                 await writeTextFile(
@@ -65,7 +73,13 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
 
         async function save() {
             const configDir = await appConfigDir();
-            const settingsPath = configDir + SETTINGS_FILE;
+
+            await mkdir('seal-notepad', { 
+                baseDir: BaseDirectory.AppLocalData,
+                recursive: true,
+             });
+
+            const settingsPath = await join(configDir, SETTINGS_FILE);
 
             await writeTextFile(
                 settingsPath, 
@@ -94,4 +108,4 @@ export const useSettings = () => {
     throw new Error("useSettings must be used inside SettingsProvider");
   }
   return context;
-};
+};  
