@@ -7,8 +7,10 @@ import "./main.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
+    <SettingsProvider>
     <BrowserRouter>
         <App />
     </BrowserRouter>
+    </SettingsProvider>
   </React.StrictMode>
 );

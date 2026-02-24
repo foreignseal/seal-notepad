@@ -11,7 +11,9 @@ function toggleMaximizeApp() {
 }
 
 function TitleBar() {
-    const [showComponent, setShowComponent] = useState(false);
+
+    // Constants for Close Pop-Up
+    const [showClose, setShowClose] = useState(false);
 
     const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ function TitleBar() {
                         <path fill="none" stroke="currentColor" strokeLinejoin="round" d="M3.5 4.5h9v7h-9z" strokeWidth="1"/>
                     </svg>
                 </button>
-                <button id="close" onClick={() => setShowComponent(true)}>
+                <button id="close" onClick={() => setShowClose(true)}>
                     {/* lsicon:close-small-outline */}
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +62,7 @@ function TitleBar() {
                 </button>
             </div>
         </div>
-        {showComponent && (<ClosePopup onClose={() => setShowComponent(false)} />
+        {showClose && (<ClosePopup onClose={() => setShowClose(false)} />
       )}
         </>
     );

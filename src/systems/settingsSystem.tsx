@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { exists, readTextFile, writeTextFile, mkdir } from "@tauri-apps/plugin-fs";
-import { appConfigDir, BaseDirectory, join } from "@tauri-apps/api/path";
-import * as path from '@tauri-apps/api/path';
+import { create, exists, readTextFile, writeTextFile, mkdir, BaseDirectory } from "@tauri-apps/plugin-fs";
 
-const folderPath = await appConfigDir();
+const folderPath = ({ baseDir: BaseDirectory.Document });
 const SETTINGS_FILE = "settings.json";
 
 export type Settings = {
@@ -33,35 +31,53 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
 
     useEffect(() => {
         async function init() {
-            await mkdir('seal-notepad', { 
-                baseDir: BaseDirectory.AppLocalData,
-                recursive: true,
-             });
+            try {
+                const content = await readTextFile(SETTINGS_FILE, {
+                    baseDir: BaseDirectory.Document,
+                    });
 
-            const settingsPath = 'settings.json';
+                const parsed = JSON.parse(content);
+                const merged = { ...defaultSettings, ...parsed };
 
-            const fileExists = await exists(settingsPath, {
-                baseDir: await path(BaseDirectory.AppLocalData, 'seal-notepad'),
-            });
+                setSettings(merged);
+
+                await writeTextFile(
+                    SETTINGS_FILE,
+                    JSON.stringify(merged, null, 2),
+                    { baseDir: BaseDirectory.Document }
+                );
+
+            } catch (e) {
+                await writeTextFile(
+                    SETTINGS_FILE,
+                    JSON.stringify(defaultSettings, null, 2),
+                    { baseDir: BaseDirectory.Document }
+                );
+
+                setSettings(defaultSettings);
+            }
+
+/*
+            const fileExists = await exists(SETTINGS_FILE, folderPath);
 
             if (!fileExists) {
-                await writeTextFile(
-                    settingsPath, 
-                    JSON.stringify(defaultSettings, null, 2)
-                );
+                // await create(SETTINGS_FILE, folderPath);
+                await writeTextFile(SETTINGS_FILE, JSON.stringify(defaultSettings, null, 2), folderPath);
                 setSettings(defaultSettings);
             } else {
-                const content = await readTextFile(settingsPath);
+                const content = await readTextFile(SETTINGS_FILE, folderPath);
                 const parsed = JSON.parse(content);
 
                 const merged = { ...defaultSettings, ...parsed };
 
                 setSettings(merged);
                 await writeTextFile(
-                    settingsPath, 
-                    JSON.stringify(merged, null, 2)
+                    SETTINGS_FILE, 
+                    JSON.stringify(merged, null, 2),
+                    folderPath
                 );
             }
+*/
 
             setLoaded(true);
         }
@@ -72,19 +88,7 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
         if (!loaded) return;
 
         async function save() {
-            const configDir = await appConfigDir();
-
-            await mkdir('seal-notepad', { 
-                baseDir: BaseDirectory.AppLocalData,
-                recursive: true,
-             });
-
-            const settingsPath = await join(configDir, SETTINGS_FILE);
-
-            await writeTextFile(
-                settingsPath, 
-                JSON.stringify(settings, null, 2)
-            );
+            await writeTextFile(SETTINGS_FILE, JSON.stringify(settings, null, 2), folderPath);
         }
 
         save();
