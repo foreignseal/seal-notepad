@@ -1,4 +1,8 @@
+import { useSettings } from "../systems/settingsSystem";
+
 export default function Settings({ onClose }: { onClose: () => void }) {
+
+  const { settings } = useSettings();
 
   return (
     <div className="pop-up" onClick={onClose}>
@@ -16,6 +20,8 @@ export default function Settings({ onClose }: { onClose: () => void }) {
         <div className="settings">
             <h1 className="google-sans-600">Settings</h1>
             <p className="google-sans-g100">Here you can customize your sealNotepad experience. More settings will be added in the future updates!</p>
+            <p> {settings.autoSave ? "true" : "false"} </p>
+            <p> {settings.recentAmount} recent files </p>
         </div>
         </div>
       </div>

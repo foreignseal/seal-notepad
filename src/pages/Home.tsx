@@ -4,6 +4,7 @@ import { save } from "@tauri-apps/plugin-dialog";
 import { writeTextFile } from "@tauri-apps/plugin-fs";
 import { useEffect } from "react";
 import Settings from "../components/Settings";
+import { useSettings } from "../systems/settingsSystem";
 
 async function createNewFile(navigate: any) {
   const filePath = await save({
@@ -36,6 +37,8 @@ async function createNewFile(navigate: any) {
 }
 
 function Home() {
+    const { settings } = useSettings();
+    
     const navigate = useNavigate();
     const [showComponent, setShowComponent] = useState(false);
 
@@ -43,7 +46,7 @@ function Home() {
 
     useEffect(() => {
         const stored = JSON.parse(localStorage.getItem("recentFiles") || "[]");
-        setRecentFiles(stored);
+        setRecentFiles(stored.slice(0, settings.recentAmount));
     }, []);
 
     return (

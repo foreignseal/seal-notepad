@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { create, exists, readTextFile, writeTextFile, mkdir, BaseDirectory } from "@tauri-apps/plugin-fs";
+import { readTextFile, writeTextFile, BaseDirectory, mkdir } from "@tauri-apps/plugin-fs";
+import * as path from '@tauri-apps/api/path';
 
-const folderPath = ({ baseDir: BaseDirectory.Document });
-const SETTINGS_FILE = "settings.json";
+const folderPath = await path.documentDir();
+const SETTINGS_FILE = await path.join(folderPath, ('sealNotepad/settings.json'));
 
 export type Settings = {
     // Saves
@@ -32,9 +33,7 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
     useEffect(() => {
         async function init() {
             try {
-                const content = await readTextFile(SETTINGS_FILE, {
-                    baseDir: BaseDirectory.Document,
-                    });
+                const content = await readTextFile(SETTINGS_FILE);
 
                 const parsed = JSON.parse(content);
                 const merged = { ...defaultSettings, ...parsed };
@@ -43,15 +42,14 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
 
                 await writeTextFile(
                     SETTINGS_FILE,
-                    JSON.stringify(merged, null, 2),
-                    { baseDir: BaseDirectory.Document }
+                    JSON.stringify(merged, null, 2)
                 );
 
             } catch (e) {
+                await mkdir('sealNotepad', { baseDir: BaseDirectory.Document }); // Ensure folder exists
                 await writeTextFile(
                     SETTINGS_FILE,
-                    JSON.stringify(defaultSettings, null, 2),
-                    { baseDir: BaseDirectory.Document }
+                    JSON.stringify(defaultSettings, null, 2)
                 );
 
                 setSettings(defaultSettings);
@@ -88,7 +86,7 @@ export const SettingsProvider = ({ children }: { children: React.ReactNode }) =>
         if (!loaded) return;
 
         async function save() {
-            await writeTextFile(SETTINGS_FILE, JSON.stringify(settings, null, 2), folderPath);
+            await writeTextFile(SETTINGS_FILE, JSON.stringify(settings, null, 2));
         }
 
         save();

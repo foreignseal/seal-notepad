@@ -8,9 +8,9 @@ import "./main.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <SettingsProvider>
-    <BrowserRouter>
+      <BrowserRouter>
         <App />
-    </BrowserRouter>
+      </BrowserRouter>
     </SettingsProvider>
   </React.StrictMode>
 );
