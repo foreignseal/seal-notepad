@@ -15,6 +15,8 @@
 
     "dialog:default",
     "dialog:allow-save",
+    
+    "system-fonts:default",
 
     {
       "identifier": "fs:read-all",

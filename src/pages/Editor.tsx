@@ -2,9 +2,16 @@ import { useSearchParams } from "react-router-dom";
 import { readTextFile, writeTextFile } from "@tauri-apps/plugin-fs";
 import { useEffect, useState } from "react";
 
+import { getSystemFonts, SystemFont } from "tauri-plugin-system-fonts-api";
+
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
+import Underline from "@tiptap/extension-underline";
+import { TextStyle } from "@tiptap/extension-text-style";
+import Color from "@tiptap/extension-color";
+import FontFamily from "@tiptap/extension-font-family";
+import { Extension } from "@tiptap/core";
 
 
 function Editor() {
@@ -13,10 +20,48 @@ function Editor() {
 
     const [title, setTitle] = useState("Untitled");
 
+    const [fonts, setFonts] = useState<SystemFont[]>([]);
+    useEffect(() => {
+      async function loadFonts() {
+        const systemFonts = await getSystemFonts();
+        setFonts(systemFonts);
+      }
+      loadFonts();
+    }, []);
+
+    const FontSize = Extension.create({
+      name: "fontSize",
+
+      addGlobalAttributes() {
+        return [
+          {
+            types: ["textStyle"],
+              attributes: {
+                fontSize: {
+                  default: null,
+                  parseHTML: element => element.style.fontSize,
+                  renderHTML: attributes => {
+                    if (!attributes.fontSize) return {};
+                    return {
+                      style: `font-size: ${attributes.fontSize}`,
+                    };
+                  },
+                },
+              },
+            },
+          ];
+        },
+      });
+
     // Editor
     const editor = useEditor({
         extensions: [
             StarterKit,
+            Underline,
+            TextStyle,
+            Color,
+            FontFamily,
+            FontSize,
             TextAlign.configure({
             types: ["heading", "paragraph"],
             }),
@@ -72,13 +117,32 @@ function Editor() {
 
       {/* Toolbar */}
       <div className="toolbar">
-        <button onClick={() => editor?.chain().focus().toggleBold().run()}>
+        <button className={editor?.isActive("bold") ? "active" : ""} onClick={() => editor?.chain().focus().toggleBold().run()}>
           Bold
         </button>
 
-        <button onClick={() => editor?.chain().focus().toggleItalic().run()}>
+        <button className={editor?.isActive("italic") ? "active" : ""} onClick={() => editor?.chain().focus().toggleItalic().run()}>
           Italic
         </button>
+
+        <button className={editor?.isActive("underline") ? "active" : ""} onClick={() => editor?.chain().focus().toggleUnderline().run()}>
+          Underline
+        </button>
+
+        {/* Font Color */}
+        <input type="color" onChange={(e) => editor?.chain().focus().setColor(e.target.value).run()}/>
+
+        {/* Font Family */}
+        <select onChange={(e) => editor?.chain().focus().setFontFamily(e.target.value).run()}>
+          {fonts.map((font, index) => (
+            <option key={index} value={font.fontName}>
+            {font.name}
+            </option>
+          ))}
+        </select>
+
+        {/* Font Size */}
+        <input type="number" min="8" max="200" defaultValue={14} className="font-size-input" onChange={(e) => editor?.chain().focus().setMark("textStyle", { fontSize: `${e.target.value}px` }).run()}/>
 
         <button onClick={() => editor?.chain().focus().setTextAlign("left").run()}>
           Left

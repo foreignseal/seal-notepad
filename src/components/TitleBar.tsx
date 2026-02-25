@@ -24,7 +24,7 @@ function TitleBar() {
     return (
         <>
         <div className="titlebar">
-            <button id="home" onClick={goHome}> <div> <img src="/src/assets/seal.png" /> <div className="outfit-300"> sealNotepad</div> </div> </button>
+            <button id="home" onClick={goHome}> <div> <img src="/src/assets/seally.png" /> <div className="outfit-300"> sealNotepad</div> </div> </button>
 
             <div className="window-controls">
                 <button id="minimize" onClick={minimizeApp}>
