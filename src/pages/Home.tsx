@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { save } from "@tauri-apps/plugin-dialog";
+import { getVersion } from "@tauri-apps/api/app";
 import { writeTextFile } from "@tauri-apps/plugin-fs";
 import { useEffect } from "react";
 import Settings from "../components/Settings";
 import { useSettings } from "../systems/settingsSystem";
+
 
 async function createNewFile(navigate: any) {
   const filePath = await save({
@@ -37,6 +39,16 @@ async function createNewFile(navigate: any) {
 }
 
 function Home() {
+    const [version, setVersion] = useState("");
+
+    useEffect(() => {
+        async function loadVersion() {
+            const v = await getVersion();
+            setVersion(v);
+        }
+        loadVersion();
+    }, []);
+
     const { settings } = useSettings();
     
     const navigate = useNavigate();
@@ -80,6 +92,7 @@ function Home() {
                     <div className="google-sans-g100">Settings</div>
                 </div>
             </button>
+            <div className="version google-sans-g100">v{version} • ALPHA</div>
         </div>
         {showComponent && (<Settings onClose={() => setShowComponent(false)} />)}
         </>

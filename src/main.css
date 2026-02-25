@@ -173,8 +173,8 @@
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 15px;
+  right: 15px;
   background-color: transparent;
   border: none;
   color: #efe9f497;
@@ -316,6 +316,22 @@
   border-color: #4a90e2;
 }
 
+.font-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #444;
+  background: #1e1e1e;
+}
+
+.font-option {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.font-option:hover {
+  background: #333;
+}
+
 .ProseMirror {
   min-height: 300px;
   outline: none;
@@ -324,6 +340,16 @@
   background: #1e1e1e; /* adjust for your theme */
 }
 
+
+/* Version */
+.version {
+  position: fixed;
+  bottom: 10px;
+  left: 15px;
+  font-size: 12px;
+  opacity: 0.6;
+  user-select: none;
+}
 
 /* Fonts */
 .outfit-300 {
