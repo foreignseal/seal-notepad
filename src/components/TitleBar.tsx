@@ -2,6 +2,7 @@ import { getCurrentWindow } from "@tauri-apps/api/window";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ClosePopup from "./ClosePopup";
+import sealIcon from "../assets/seally.png";
 
 function minimizeApp() {
     getCurrentWindow().minimize();
@@ -24,7 +25,7 @@ function TitleBar() {
     return (
         <>
         <div className="titlebar">
-            <button id="home" onClick={goHome}> <div> <img src="/src/assets/seally.png" /> <div className="outfit-300"> sealNotepad</div> </div> </button>
+            <button id="home" onClick={goHome}> <div> <img src={sealIcon} /> <div className="outfit-300"> sealNotepad</div> </div> </button>
 
             <div className="window-controls">
                 <button id="minimize" onClick={minimizeApp}>

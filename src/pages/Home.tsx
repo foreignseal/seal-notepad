@@ -6,6 +6,7 @@ import { writeTextFile } from "@tauri-apps/plugin-fs";
 import { useEffect } from "react";
 import Settings from "../components/Settings";
 import { useSettings } from "../systems/settingsSystem";
+import bigSeal from "../assets/home-seal.png"
 
 
 async function createNewFile(navigate: any) {
@@ -65,7 +66,7 @@ function Home() {
         <>
         <div>
             <div className="home-page">
-                <img src="/src/assets/home-seal.png"/>
+                <img src={bigSeal} />
                 <h1 className="google-sans-600">No seally notes around!</h1>
                 <a className="google-sans-g100" onClick={() => createNewFile(navigate)}>Let's create a new one!</a>
                 {recentFiles.length > 0 && (
